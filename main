@@ -1,1 +1,432 @@
+import threading
+from PIL import Image
+
+class ExitGameException(Exception):
+    pass
+
+# Function to show image using an external viewer
+def show_image(image_path):
+    img = Image.open(image_path)
+    img.show()
+
+# Function to simulate a timer for user actions
+def timer_thread():
+    global timeout
+    timeout = False
+    threading.Timer(5.0, timeout_function).start()
+
+def timeout_function():
+    global timeout
+    timeout = True
+
+def restart_game():
+    global timeout  # Reset any global variables or states here
+    timeout = False
+    
+    while True:
+        print("\nDo you want to restart the game? (yes/no)")
+        restart_choice = input("> ").lower()
+
+        if restart_choice == "yes":
+            return True
+        elif restart_choice == "no":
+            print("Thanks for playing! Goodbye.")
+            raise ExitGameException  # Raise the custom exception to exit the main loop
+        else:
+            print("Invalid choice. Please enter 'yes' or 'no'.")
+            continue
+
+# Function to handle goblin encounter
+def goblin_encounter():
+    while True:
+        print("You pull out your sword and you're faced with a decision.\n")
+        input("")
+        print("\n----------------------------------------------------------------\n")
+        print("ATTACK")
+        print("1. Heart")
+        print("2. Brain\n")
+        print("----------------------------------------------------------------")
+        gob_choice = input("1 or 2> ").lower()
+
+        if gob_choice == '2':
+            print("\nYou pierce the goblin straight through his head and inflict fatal damage to the brain.")
+            input("Battle Won!\n")
+            print("\"Great job adventurer! I guess you do live up to your appearance.\"\n")
+            input("You and the merchant finally made it to a populated location. It is a humble village with about less than 200 people.\n")
+            input("You thank the merchant for the ride, and as you part ways, the merchant decides to give you an item...\n")
+            input("\"Here you go, adventurer. This is a teleporting staff. You can use this to get anywhere in Enchantia!\"\n")
+            input("Item acquired: Teleporting Staff\n")
+            input("\"Why are you so kind to me?\"\n")
+            input("\"There's something about your presence... I can see great potential in you.\"\n")
+            input("\"Where is the Demon King, and how can I beat him?\"\n")
+            input("\"The Demon King rules the majority of the land in Enchantia, but his lair is far within the ruins I found you in. You will most likely find him there.\"\n")
+            input("\"Before you decide to fight him, however, I must warn you that he's an incredibly powerful S - Rank Sorcerer that no one's been able to match up against up to this day.\"\n")
+            input("Use the teleporter I gave you to defeat three bosses that each get progressively harder.\n")
+            input("\"After that, with your potential... you could possibly beat the Demon King. I'd say your chances are around... 2 percent.\"\n")
+            input("\"Good luck, young adventurer...\"\n")
+            input("Item Acquired: Map Of Enchantia\n")
+            input("The merchant gives you a map with 3 bosses highlighted that rank from A to S class.\n")
+            input("You use the teleporting staff to travel to the first boss...\n")
+            return "continue"
+
+        elif gob_choice == '1':
+            input("\nYou stab the goblin in one of his hearts. Wait... Only ONE of his hearts! Goblins have three hearts, remember?")
+            input("\nYou realize too late, and the Goblin overwhelms you and the merchant.")
+            input("\nGame over.")
+            return "restart"
+
+        else:
+            print("\nInvalid Choice. Try again!")
+
+# Function to handle goblin boss encounter
+def goblin_boss():
+    print("You arrive in a dark mystical area. You look down at your map and find yourself in the Sacred Forest.\n")
+    input("You see the highlighted boss in the area: Eldest Son of The Goblin King.\n")
+    input("As you explore your surroundings, you find an ancient temple.\n")
+    input("As you look inside, you see a plump green figure. It's the Boss!\n")
+    input("You try to creep up quietly, but you trip and the Goblin Boss hears you.\n")
+
+    while True:
+        print("\n----------------------------------------------------------------\n")
+        print("DODGE")
+        print("\nPress 'd' to dodge")
+        print("\n----------------------------------------------------------------")
+
+        user_input = input("> ")
+        if user_input.lower() == 'd':
+            print("\nYou successfully dodged the attack!")
+
+            # Continue with the Goblin Boss encounter
+            print("\nThe Goblin Boss, now alerted, charges towards you. You have a split second to decide your next move.\n")
+            while True:
+                print("\n----------------------------------------------------------------\n")
+                print("ATTACK")
+                print("1. Legs")
+                print("2. Belly\n")
+                print("----------------------------------------------------------------")
+
+                attack_choice = input("> ").lower()
+
+                if attack_choice == '1':
+                    print("\nYou aim for the Goblin Boss's legs and manage to cripple it temporarily. It stumbles, giving you an opportunity to strike.")
+                    input("\nYou swing your sword, dealing a significant blow.")
+                    input("\nThe Goblin Boss roars in pain.")
+                    return "continue"
+
+                elif attack_choice == '2':
+                    print("\nYou go for a powerful strike at the Goblin Boss's belly. It's a risky move, but it pays off.")
+                    input("\nYour sword pierces through its vulnerable spot, causing substantial damage.")
+                    input("\nThe Goblin Boss howls in agony.")
+                    return "continue"
+
+                else:
+                    print("\nInvalid Choice. Type 1 or 2!")
+
+        else:
+            print("You didn't dodge.")
+            input("Game Over.")
+            return "restart"
+
+# CRIMSON DRAGON ENCOUNTER
+def crimson_dragon():
+    print("\nCongratulations! You have defeated the Eldest Son of The Goblin King.")
+    input("\nYou look around the hollow temple and find a mysterious sword.")
+    input("\nItem Acquired: Cursed Moonlight Blade")
+    input("\nThe Cursed Moonlight Blade is a shadow-infused obsidian sword that grants its wielder enhanced strength and agility.")
+    input("\nAs you stand in the aftermath of the battle, you hear a voice echoing in your mind.")
+    input("\n\"Well done, adventurer. But this is just the beginning. Two more challenges await you.\"")
+    input("\nYou consult your map and see two more bosses highlighted: Crimson Dragon and Frost Queen.")
+    input("\nYou decide to travel to the second boss: Crimson Dragon.")
+
+    # Second Boss: Crimson Dragon Encounter
+    print("\nYou arrive in a scorching desert, and the air is thick with heat. Your map indicates the presence of the Crimson Dragon.")
+    input("\nAs you venture deeper into the desert, you spot the enormous silhouette of the dragon.")
+    input("\nIt's covered in red scales, and its eyes lock onto you.")
+
+    # Battle with the Crimson Dragon
+    print("\nThe Crimson Dragon attacks! You must choose how to defend yourself.")
+
+    while True:
+        print("\n----------------------------------------------------------------\n")
+        print("DEFEND")
+        print("1. Block with your shield")
+        print("2. Evade the dragon's flames")
+        print("3. Deflect the dragon's flames with your sword")
+        print("\n----------------------------------------------------------------")
+
+        defense_choice = input("> ").lower()
+
+        if defense_choice == '1':
+            print("\nYou raise your shield to block the dragon's fiery breath.")
+            input("\nThe flames hit your shield with tremendous force, but you manage to withstand the attack.")
+            break
+
+        elif defense_choice == '3':
+            print("\nYou deflect the flames back to the dragon with your powerful sword.")
+            input("\nIt momentarily weakens the dragon.")
+            break
+
+        elif defense_choice == '2':
+            print("\nYou try to evade the scorching fire, but the dragon adjusts its aim.")
+            input("The flames engulf you, burning you to a crisp.")
+            print("Game Over.")
+            return "restart"  # Break out of the encounter loop and restart the game
+
+        else:
+            print("\nInvalid Choice. Type 1 or 2!")
+
+    # Choose where to strike back
+    print("\nThe Crimson Dragon is vulnerable. Where do you want to strike back?")
+    print("\n----------------------------------------------------------------\n")
+    print("1. Head")
+    print("2. Tail")
+    print("\n----------------------------------------------------------------")
+
+    strike_choice = input("> ").lower()
+
+    if strike_choice == '1':
+        print("\nYou aim for the Crimson Dragon's head, dealing a powerful blow.")
+        input("\nThe dragon roars in pain, its fiery breath momentarily weakened.")
+        input("\nSeizing the opportunity, you prepare for your next move.")
+        return "continue"
+
+    elif strike_choice == '2':
+        print("\nYou target the Crimson Dragon's tail, disrupting its balance.")
+        input("\nThe dragon stumbles, providing you with a chance to strike back.")
+        input("\nYou capitalize on the opening, preparing for your next move.")
+        return "continue"
+
+    else:
+        print("\nInvalid Choice. The dragon retaliates!")
+
+
+def frost_queen():
+    print("\nCongratulations! You have defeated the Crimson Dragon.")
+    input("\nThe dragon roars in defeat, and the desert breeze carries away the remnants of the battle.")
+    input("\nAs a reward for your victory, you feel a surge of power within you.")
+    input("\nYou have acquired a new ability: Fire Mastery!")
+    input("\nWith Fire Mastery, you can harness the power of fire in your attacks.")
+    input("\nUse this newfound ability wisely in your journey to defeat the Demon King!")
+    input("\nOnce again, the mysterious voice speaks to you.")
+    input("\n\"Impressive, adventurer. You have leveled up to an A rank. One more challenge remains. Seek out the Frost Queen in the Frozen Wastes.\"")
+    input("\nYou consult your map, revealing the location of the third boss: Frost Queen.")
+    print("\nYou teleport to the Frozen Wastes, a desolate land covered in ice and snow.")
+    input("\nThe chilling wind bites through your clothes as you make your way to the Frost Queen's lair.")
+    input("\nIn the distance, you see a magnificent ice palace. The Frost Queen awaits inside.")
+
+    # Battle with the Frost Queen
+    print("\nThe Frost Queen emerges from her icy throne, ready to defend her domain.")
+    input("\nShe conjures freezing winds and sends icy shards toward you. What will you do?")
+
+    while True:
+        print("\n----------------------------------------------------------------")
+        print("\nATTACK")
+        print("1. Strike with your sword")
+        print("2. Utilize Fire Mastery")
+        print("3. Dodge and observe")
+        print("\n----------------------------------------------------------------")
+
+        attack_choice = input("> ")
+
+        if attack_choice == '1':
+            print("\nYou swing your sword, but the Frost Queen effortlessly deflects your attack.")
+            input("\nThe Queen counters with a barrage of ice.\nGame over.")
+            return "restart"
+
+        elif attack_choice == '2':
+            print("\nChanneling the power of Fire Mastery, you unleash a torrent of flames.")
+            input("\nThe intense heat melts the ice, and the Frost Queen recoils in pain.")
+            input("\nThe flames leave her vulnerable. Prepare for your next move!")
+            break
+
+        elif attack_choice == '3':
+            print("\nYou attempt to dodge the Frost Queen's attacks and carefully observe her movements.")
+            input("\nHowever, she conjures too many ice shards for you to dodge and pierces right through your heart.\nGame over.")
+            return "restart"
+
+        else:
+            print("\nInvalid Choice. Type 1 or 2")
+    
+        # Continue the battle
+    print("\nThe Frost Queen retaliates with a strike.")
+    print("\n----------------------------------------------------------------")
+    print("\nDEFEND")
+    print("1. Raise your shield")
+    print("2. Evade the strike")
+    print("\n----------------------------------------------------------------")
+
+    defense_choice = input("> ").lower()
+
+    while True:
+        if defense_choice == '1':
+            print("\nYou raise your shield to block the incoming ice shards.")
+            input("The shield absorbs the impact, protecting you from harm.")
+            break
+    
+        elif defense_choice == '2':
+            print("\nYou swiftly evade the incoming ice shards, avoiding any damage.")
+            break
+    
+        else:
+            print("\nInvalid Choice. Type 1 or 2")
+
+    print("\nThe Ice Queen prepares for another attack. She conjures a huge ball of ice.")
+    print("\n----------------------------------------------------------------\n")
+    print("DODGE")
+    print("\nPress 'd' to dodge")
+    print("\n----------------------------------------------------------------\n")
+        
+    user_input = input("> ")
+    
+    while True:
+        if user_input.lower() == 'd':
+            print("\nYou successfully dodge the attack and the ice ball flies past you.")
+            input("\nHowever, the massive ball hits the icy surface and creates a shockwave that sends you flying.")
+            break
+    
+        else:
+            print("You didn't dodge.")
+            input("Game Over.")
+            return "restart"
+    
+    input("\nYou wobbily stand up as you realize that you sustained a dislocated shoulder to your wielding hand from the blow.")
+    input("\nBefore you're able to collect yourself the Ice Queen sends in another attack.")
+    input("\nYou look up to the sky and see a shower of deadly icicles raining down on you.")
+
+    while True:
+        print("\n----------------------------------------------------------------")
+        print("\nDEFEND")
+        print("1. Use fire mastery")
+        print("2. Use your sword")
+        print("3. Use your shield")
+        print("\n----------------------------------------------------------------")
+
+        attack_choice = input(">")
+        
+        if attack_choice() == '1':
+            print("\nYou use your fire mastery to create a flame umbrella which protects you from the attack.")
+            break
+            
+        elif attack_choice() == '2':
+            print("\nYou manage to block most of the icicles but your sword skills are weakened from your dislocated shoulder and an icicle impales your chest.")
+            input("\nGame Over.")
+            return "restart"
+        
+        elif attack_choice() == '3':
+            print("\nYou try too block the icicles with your shield but the overwhelming amount of icicles break your shield and pierce through your stomach.")
+            input("\nGame Over.")
+            return "restart"
+        
+        else:
+            print("\nInvalid Choice. Type 1 or 2")
+
+    input("\nIt's now your turn to charge in for the attack.")
+    
+    while True:
+        infused = input("\nType 'infuse' to infuse your sword with fire magic.")
+        
+        if infused() == 'infuse':
+            print("\nYou infuse your sword and sprint towards the Ice Queen.")
+            break
+
+        else:
+            print("\nInvalid Choice. Type: 'infuse'")
+    
+    while True:
+        print("\n----------------------------------------------------------------\n")
+        print("ATTACK")
+        print("1. Cut her in half")
+        print("2. Cut off her arm")
+        print("3. Cut off her leg")
+        print("4. ")
+        print("\n----------------------------------------------------------------")
+
+
+def main_game_loop():
+    while True:
+        try:
+# Welcome message
+            print("\nWelcome to Enchantia: Adventurer's Legacy!\n")
+            input("\nPress ENTER to continue... ")
+
+# Backstory
+            print("\nBackstory...\n")
+            input("")
+
+# Initial situation
+            print("Your dad went to go get the milk, and your mom is the only family you have left…")
+            input("")
+            print("However, your mom is in the hospital with an incurable disease. You've been mourning this for years, and it's almost her time to pass…")
+            input("")
+            print("You are weeping at the side of your bed not knowing what to do. As you plead to God for help, eyes blurry, and tears dripping down the side of your face, you see a glimmering light appear in front of you.")
+            input("")
+            print("You look up to see a shining portal in front of you. You almost pass out from shock, but you hear a voice…")
+            input("")
+            print("“What is it that you desire?”\n")
+            input("")
+            print("Wiping the tears off your face, “All I want is for my mother to live”\n")
+            input("")
+            print("“Come through the portal, conquer this realm, and defeat the demon boss, and you shall have what you seek.”\n")
+            input("")
+            print("Do you go through the portal?\n")
+
+            while True:
+                portal_choice = input("> ").lower()
+
+                if portal_choice == "yes":
+                    print("\nAs you pass through the bright light, you find yourself on the back of a wagon being pulled by a horse ridden by an old merchant in the middle of a valley.\n")
+                    input("")
+                    print("“Ah, it seems you've finally come to your senses”, in a brittle tone, “I found you unconscious near the ruins. Why would a B-class adventurer like you be alone all the way out there in the ruins?”")
+                    input("")
+                    input("")
+                    print("“Ruins? Adventurer? Where am I?”, you say in a faint tone.\n" )
+                    input("")
+                    print("“We're in Enchantia of course. We were once a prospered land but now it's ruled by the Demon King.”\n")
+                    input("")
+                    print("As you find your conscience, you remember that name... Demon King. You recall what happened and why you were here. ")
+                    input("")
+                    print("“Just before you could ask the merchant a question, you notice something running straight at you from the trail behind you. You take a closer look...”\n")
+                    input("")
+                    print("“WOAH! What is that?!”, you shout out, “There's a green monster heading straight towards us!”\n")
+                    input("")
+                    print("“Yeah, it's just a goblin. It's D-Class monster and has 3 hearts.”, the merchant replies, “A B-class like you should be able to handle it pretty easily.”\n")
+                    input("")
+                    print("As you contemplate reality, the goblin jumps up onto the wagon.\n")
+                    input("")
+                    print("“USE YOUR SWORD!”, The merchant exclaimed.")
+                    input("")
+
+                    result = goblin_encounter()
+                    if result == "continue":
+                        result = goblin_boss()
+                        if result == "continue":
+                            result = crimson_dragon()
+                            if result == "continue":
+                                result = frost_queen()
+                            elif result == "restart":
+                                break
+                        elif result == "restart":
+                            break  # Exit the current loop and restart the game
+                    elif result == "restart":
+                        break  # Exit the current loop and restart the game
+
+                elif portal_choice == "no":
+                    input("\nYou waste the opportunity to save your mother, and she dies.")
+                    print("\nGame over.")
+
+                    if restart_game():
+                        break  # Exit the current loop and restart the game
+
+                else:
+                    print("\nInvalid choice. Please enter 'yes' or 'no'.")
+
+        except ExitGameException:
+            break  # Exit the main loop if the custom exception is raised
+
+if __name__ == "__main__":
+    main_game_loop()                                    
+
+
+                        
+
 
