@@ -60,7 +60,7 @@ def goblin_encounter():
             input("\"There's something about your presence... I can see great potential in you.\"\n")
             input("\"Where is the Demon King, and how can I beat him?\"\n")
             input("\"The Demon King rules the majority of the land in Enchantia, but his lair is far within the ruins I found you in. You will most likely find him there.\"\n")
-            input("\"Before you decide to fight him, however, I must warn you that he's an incredibly powerful S - Rank Sorcerer that no one's been able to match up against up to this day.\"\n")
+            input("\"Before you decide to fight him, however, I must warn you that he's an incredibly powerful S - Rank Adventurer that no one's been able to match up against up to this day.\"\n")
             input("Use the teleporter I gave you to defeat three bosses that each get progressively harder.\n")
             input("\"After that, with your potential... you could possibly beat the Demon King. I'd say your chances are around... 2 percent.\"\n")
             input("\"Good luck, young adventurer...\"\n")
@@ -270,7 +270,7 @@ def frost_queen():
         else:
             print("\nInvalid Choice. Type 1 or 2")
 
-    print("\nThe Ice Queen prepares for another attack. She conjures a huge ball of ice.")
+    print("\nThe Frost Queen prepares for another attack. She conjures a huge ball of ice.")
     print("\n----------------------------------------------------------------\n")
     print("DODGE")
     print("\nPress 'd' to dodge")
@@ -290,7 +290,7 @@ def frost_queen():
             return "restart"
     
     input("\nYou wobbily stand up as you realize that you sustained a dislocated shoulder to your wielding hand from the blow.")
-    input("\nBefore you're able to collect yourself the Ice Queen sends in another attack.")
+    input("\nBefore you're able to collect yourself the Frost Queen sends in another attack.")
     input("\nYou look up to the sky and see a shower of deadly icicles raining down on you.")
 
     while True:
@@ -326,7 +326,7 @@ def frost_queen():
         infused = input("\nType 'infuse' to infuse your sword with fire magic.")
         
         if infused() == 'infuse':
-            print("\nYou infuse your sword and sprint towards the Ice Queen.")
+            print("\nYou infuse your sword and sprint towards the Frost Queen.")
             break
 
         else:
@@ -338,8 +338,93 @@ def frost_queen():
         print("1. Cut her in half")
         print("2. Cut off her arm")
         print("3. Cut off her leg")
-        print("4. ")
+        print("4. Cut off her head")
         print("\n----------------------------------------------------------------")
+
+        attack_choice = input("> ")
+
+        if attack_choice() == '1':
+            print("You deflects your attack and your sword breaks.")
+            print('She strikes back and cuts your arm off.')
+            break
+        
+        elif attack_choice() == '2':
+            print("You deflects your attack and your sword breaks.")
+            print('She strikes back and cuts your arm off.')
+            break
+
+        elif attack_choice() == '3':
+            print("You deflects your attack and your sword breaks.")
+            print('She strikes back and cuts your arm off.')
+            break
+        
+        elif attack_choice() == '4':
+            print("You deflects your attack and your sword breaks.")
+            print('She strikes back and cuts your arm off.')
+            break
+
+        else:
+            print("Invalid Choice. Type 1, 2, 3, or 4")
+
+    input("\nYou scream in pain as the Frost Queen scoffs with the feeling of victory.")
+    input("\nYou must finish the Ice Queen off with your next move.")
+    input("\nYou muster up as much magic as you can to create a massive fireball using fire mastery.")
+    
+    print("\n----------------------------------------------------------------\n")
+    print("ATTACK")
+    print("\nType 'FIRE' to send your attack")
+    print("\n----------------------------------------------------------------\n")
+        
+    user_input = input("> ")
+    
+    while True:
+        if user_input() == 'FIRE':
+            print("\nYou send your attack in and the Frost Queen tries to block it with her own magic. Your magic power exceeded hers and burns her into ashes.")
+            break
+
+        else:
+            print("\nInvalid Choice. Type 'FIRE' to use your attack.")
+
+    input("\nA voice echoes, \"Congratulations, adventurer. You have reached the pinnacle of A rank. You are now an S-rank adventurer!\"")
+    input("\nYour abilities have transcended, and you feel a newfound strength.")
+    input("\nYou see a healing potion in front of you and reach out to grab it.")
+    input("\nYou reach out to grab the healing potion, but just as your fingers touch it, everything goes black.")
+    input("\nA mysterious force surrounds you, and you feel yourself being pulled away.")
+    input("\nYou hear a voice..")
+    input("\n\"Hello son, I have been accepting you.\"")
+    input("\nYou look up to see... The Demon Boss.")
+    input("\n\"Son? I'm not your son, i'm here to kill you.\"")
+    input("\nThen how do I know your mother is suffering an incurable illness?")
+    input("\n\"What?! We haven't seen you since mom got diagnosed.\"") 
+    input("\n\"Well, I am certainly not dead.\"") 
+    input("\n\"By the look of things the path I sent you on was a brutal one.\"")
+    input("\n\"The path you sent me on? What do you mean?\"")
+    input("\n\"I brought you here son... since the very begininning.\"")
+    input("\n\"I made the portal.\"")
+    input("\n\"The merchant was my servant.\"")
+    input("\n\"And that voice in your head... yes, that as me too.\"")
+    input("\n\"If you're so powerful, father, why don't you just go and heal mother.\"")
+    input("\n\"You what?! You monster!\"")
+    input("\n\"Yes, I am a monster. Now when you revive, use that hatred to kill this monster.\"")
+    input("\n\"The Demon Boss lunges forward with a dagger and tries to stab you.\"")
+    
+    while True:
+        print("\n----------------------------------------------------------------\n")
+        print("DODGE")
+        print("\nPress 'd' to dodge")
+        print("\n----------------------------------------------------------------\n")
+        
+        if user_input.lower() == 'd':
+            print("\nYou attempt to dodge his attack but the strike was still too fast as he impales your heart.")
+            input("\nYou wake up in the back of a wagon...")
+            input("\n\"Ah, it seems you've finally come to your senses\"")
+            break
+
+        else:
+            print("\nInvalid Choice. Type 'd' to dodge.")
+    
+    input("Thank you for playing Enchantia!: Adventure's Legacy!... Part 1")
+
 
 
 def main_game_loop():
@@ -425,8 +510,4 @@ def main_game_loop():
 
 if __name__ == "__main__":
     main_game_loop()                                    
-
-
-                        
-
 
