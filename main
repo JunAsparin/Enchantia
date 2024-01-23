@@ -1,5 +1,4 @@
 import threading
-from PIL import Image
 
 class ExitGameException(Exception):
     pass
@@ -182,7 +181,7 @@ def crimson_dragon():
     print("2. Tail")
     print("\n----------------------------------------------------------------")
 
-    strike_choice = input("> ").lower()
+    strike_choice = input("> ")
 
     if strike_choice == '1':
         print("\nYou aim for the Crimson Dragon's head, dealing a powerful blow.")
@@ -301,18 +300,18 @@ def frost_queen():
         print("3. Use your shield")
         print("\n----------------------------------------------------------------")
 
-        attack_choice = input(">")
+        attack_choice = input("> ")
         
-        if attack_choice() == '1':
+        if attack_choice == '1':
             print("\nYou use your fire mastery to create a flame umbrella which protects you from the attack.")
             break
             
-        elif attack_choice() == '2':
+        elif attack_choice == '2':
             print("\nYou manage to block most of the icicles but your sword skills are weakened from your dislocated shoulder and an icicle impales your chest.")
             input("\nGame Over.")
             return "restart"
         
-        elif attack_choice() == '3':
+        elif attack_choice == '3':
             print("\nYou try too block the icicles with your shield but the overwhelming amount of icicles break your shield and pierce through your stomach.")
             input("\nGame Over.")
             return "restart"
@@ -325,7 +324,7 @@ def frost_queen():
     while True:
         infused = input("\nType 'infuse' to infuse your sword with fire magic.")
         
-        if infused() == 'infuse':
+        if infused.lower() == 'infuse':
             print("\nYou infuse your sword and sprint towards the Frost Queen.")
             break
 
@@ -343,22 +342,22 @@ def frost_queen():
 
         attack_choice = input("> ")
 
-        if attack_choice() == '1':
+        if attack_choice == '1':
             print("You deflects your attack and your sword breaks.")
             print('She strikes back and cuts your arm off.')
             break
         
-        elif attack_choice() == '2':
+        elif attack_choice == '2':
             print("You deflects your attack and your sword breaks.")
             print('She strikes back and cuts your arm off.')
             break
 
-        elif attack_choice() == '3':
+        elif attack_choice == '3':
             print("You deflects your attack and your sword breaks.")
             print('She strikes back and cuts your arm off.')
             break
         
-        elif attack_choice() == '4':
+        elif attack_choice == '4':
             print("You deflects your attack and your sword breaks.")
             print('She strikes back and cuts your arm off.')
             break
@@ -378,7 +377,7 @@ def frost_queen():
     user_input = input("> ")
     
     while True:
-        if user_input() == 'FIRE':
+        if user_input == 'FIRE':
             print("\nYou send your attack in and the Frost Queen tries to block it with her own magic. Your magic power exceeded hers and burns her into ashes.")
             break
 
@@ -414,7 +413,7 @@ def frost_queen():
         print("\nPress 'd' to dodge")
         print("\n----------------------------------------------------------------\n")
         
-        if user_input.lower() == 'd':
+        if user_input.lower == 'd':
             print("\nYou attempt to dodge his attack but the strike was still too fast as he impales your heart.")
             input("\nYou wake up in the back of a wagon...")
             input("\n\"Ah, it seems you've finally come to your senses\"")
